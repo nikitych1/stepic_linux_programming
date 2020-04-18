@@ -4,19 +4,17 @@
 #include <string.h>
 
 char* token;
+size_t i = 0;
 
 int main()
 {
-	// printf("%d\n", getppid());
-	// printf("\n");
-
-
 	FILE * fp;
     char * line = NULL;
     size_t len = 0;
     ssize_t read;
 
     fp = fopen("/proc/self/stat", "r");
+ 
     if (fp == NULL)
         exit(EXIT_FAILURE);
 
@@ -24,15 +22,15 @@ int main()
 
 	token = strtok(line, " ");
 
-	size_t i = 0;
-	while (i < 10){
+	while (i < 10)
+	{
 		token = strtok(NULL, " ");
+	
 		if (i == 2)
 			printf("%s\n", token);
+
 		++i;
 	}
-
-	// printf("\n");
 
     fclose(fp);
 
