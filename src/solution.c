@@ -6,6 +6,8 @@
 #include <malloc.h>
 #include <string.h>
 
+// #include "vector.h"
+
 typedef struct StringVector StringVector, *vector;
 struct StringVector 
 {
@@ -73,6 +75,8 @@ void readFile(char* start_pid)
     ++counter;
 
 	getline(&line, &len, fp);
+    // printf("   %s : [%s]\n", start_pid, line);
+
     token = strtok(line, " ");
 
     while (token != NULL) 
@@ -91,10 +95,24 @@ int main(int argc, char** argv)
     readFile(argv[1]);
 
     if (s_vector._size > 0) 
-        for (size_t i = 0; i < s_vector._size; ++i)
+    {
+        // printf("\n   v : [");
+
+        // for (size_t i = 0; i < s_vector._size; ++i)
+        //     printf("%s, ", s_vector._data[i]);
+
+        size_t i = 0;
+        for (i = 0; i < s_vector._size; ++i)
+        {
+            // printf("\nback = %s", s_vector._data[i]);
+            // printf("]; size = |%zu|\n", s_vector._size);
+
             readFile(s_vector._data[i]);
+        }
+    }
 
     printf("%zu\n", s_vector._size + 1);
+
 
     clear(&s_vector);
 
